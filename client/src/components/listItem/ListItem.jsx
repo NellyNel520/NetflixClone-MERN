@@ -41,8 +41,7 @@ const ListItem = ({ index }) => {
 						<div className="desc">
 							A process server and his marijuana dealer wind up on the run from
 							hitmen and a corrupt police officer after he witnesses his
-							dealer's boss murder a competitor while trying to serve papers on
-							him
+							dealer's boss murder a competitor while...
 						</div>
 
 						<div className="genre">Comedy</div>
