@@ -1,4 +1,4 @@
-const { User } = require('../models/User')
+const { User } = require('../models')
 
 // UPDATE
 const updateUser = async (req, res) => {
@@ -55,16 +55,16 @@ const getUserById = async (req, res) => {
 // GET ALL USERS
 const getAllUsers = async (req, res) => {
 	const query = req.query.new
-  if (req.user.isAdmin) {
-	try {
-		const users = query
-			? await User.find().sort({ _id: -1 }).limit(7)
-			: await User.find()
-		res.status(200).json(users)
-	} catch (err) {
-		res.status(500).json(err)
+	if (req.user.isAdmin) {
+		try {
+			const users = query
+				? await User.find().sort({ _id: -1 }).limit(7)
+				: await User.find()
+			res.status(200).json(users)
+		} catch (err) {
+			res.status(500).json(err)
+		}
 	}
-}
 }
 //GET USER STATS (total number user per month for the previous year)
 const getUserStats = async (req, res) => {
