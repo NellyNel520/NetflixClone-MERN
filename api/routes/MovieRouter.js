@@ -9,5 +9,7 @@ router.get('/find/:id', verify, controller.getMovieById)
 router.get('/random', verify, controller.getRandom)
 router.get('/', verify, controller.getAllMovies)
 
+router.post('/add', verify, controller.addMovie)
+
 
 module.exports = router

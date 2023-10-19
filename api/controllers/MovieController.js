@@ -16,7 +16,7 @@ const addMovie = async (req, res) => {
   res.status(403).json("You are not allowed!");
 }
 };
-
+ 
 // Update Movie
 
 const updateMovie = async (req, res) => {
