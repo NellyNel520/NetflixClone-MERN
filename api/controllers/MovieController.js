@@ -56,14 +56,14 @@ const deleteMovie = async (req, res) => {
   res.status(403).json("You are not allowed!");
 }
 }
-
+ 
 // GET Movie BY ID
 const getMovieById = async (req, res) => {
 	try {
 		const { id } = req.params;
-		const Movie = await Movie.findById(id);
-		if (Movie) {
-			return res.status(200).json({ Movie });
+		const movie = await Movie.findById(id);
+		if (movie) {
+			return res.status(200).json({ movie });
 		}
 		return res
 			.status(404)

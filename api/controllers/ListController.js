@@ -1,7 +1,7 @@
 const { List } = require('../models')
 
 // CREATE 
-
+ 
 const addList = async (req, res) => {
   if (req.user.isAdmin) {
   const newList = new List(req.body);

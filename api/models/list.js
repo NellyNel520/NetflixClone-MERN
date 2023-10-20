@@ -8,7 +8,7 @@ const List = new Schema(
 		genre: { type: String },
 		content: { type: Array },
 	},
-	{ timestamps: true }
+	{ timestamps: true } 
 )
-
+ 
 module.exports = List

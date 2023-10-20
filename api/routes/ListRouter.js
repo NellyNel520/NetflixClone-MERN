@@ -9,4 +9,4 @@ router.get('/', verify, controller.getList)
 router.post('/add', verify, controller.addList)
 
 
-module.exports = router
+module.exports = router 

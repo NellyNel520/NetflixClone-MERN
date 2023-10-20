@@ -5,9 +5,8 @@ const jwt = require("jsonwebtoken");
 
 const Register = async (req, res) => {
   const newUser = new User({
-    name: req.body.name,
-    email: req.body.email,
-    // password: req.body.password,
+    username: req.body.username,
+    email: req.body.email, 
     password: CryptoJS.AES.encrypt(
       req.body.password,
       process.env.APP_SEC
