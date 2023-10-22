@@ -1,23 +1,25 @@
-import React, {useState} from 'react'
-import './login.scss'
+import React, {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
-
+import { AuthContext } from '../../authContext/AuthContext'
+import { login } from '../../authContext/apiCalls'
 import { useNavigate } from 'react-router-dom'
+import './login.scss'
 
 
 
 const Login = () => {
-
 	let navigate = useNavigate()
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
+	const { dispatch } = useContext(AuthContext)
 
 
-	// const handleLogin = (e) => {
-	// 	e.preventDefault()
-	// 	login(dispatch, { email, password })
-	// 	navigate('/')
-	// }
+
+	const handleLogin = (e) => {
+		e.preventDefault()
+		login({ email, password }, dispatch)
+	}
+
 	return (
 		<div className="login">
 			<div className="top">
@@ -41,7 +43,7 @@ const Login = () => {
 					/>
 					<input className="input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
 
-					<button className="loginButton" >Sign In</button>
+					<button className="loginButton" onClick={handleLogin}>Sign In</button>
 
 					<div className="save">
 						<div>
