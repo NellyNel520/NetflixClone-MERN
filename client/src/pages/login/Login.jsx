@@ -1,5 +1,6 @@
 import React from 'react'
 import './login.scss'
+import { Link } from 'react-router-dom'
 
 const Login = () => {
 	return (
@@ -37,11 +38,14 @@ const Login = () => {
 							<label htmlFor="checkbox">Remember me ?</label>
 						</div>
 
-            <div>Need help?</div>
+						<div>Need help?</div>
 					</div>
 
-					<div className='signupLink'>
-						New to Netflix?  <b>Sign up now</b>
+					<div className="signupLink">
+						New to Netflix?{' '}
+						<Link to={'/signup'}>
+							<b>Sign up now</b>
+						</Link>
 					</div>
 
 					<small>

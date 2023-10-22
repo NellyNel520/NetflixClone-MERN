@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import { useRef } from 'react'
 import './signup.scss'
+import { Link } from 'react-router-dom'
 
 const Signup = () => {
-	const [email, setEmail] = useState('')
+	const [email, setEmail] = useState('') 
 	const [password, setPassword] = useState('')
+	const [username, setUsername] = useState('')
+	// let navigate = useNavigate()
 
 	const emailRef = useRef()
 	const passwordRef = useRef()
+	const usernameRef = useRef()
 
 	const handleStart = () => {
 		setEmail(emailRef.current.value)
@@ -18,7 +22,7 @@ const Signup = () => {
 	}
 
 	return (
-		<div className="signup">
+		<div className="signUp">
 			<div className="top">
 				<div className="wrapper">
 					<img
@@ -26,7 +30,9 @@ const Signup = () => {
 						src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Netflix_2015_logo.svg/2560px-Netflix_2015_logo.svg.png"
 						alt="logo"
 					/>
-					<button className="loginButton">Login</button>
+					<Link to='/login'>
+						<button className="loginButton">Login</button>
+					</Link>
 				</div>
 			</div>
 

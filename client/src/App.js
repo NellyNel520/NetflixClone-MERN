@@ -4,9 +4,16 @@ import Watch from './pages/watch/Watch'
 import Signup from './pages/signup/Signup'
 import Login from './pages/login/Login'
 import { Routes, Route, Navigate } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 function App() {
-	const user = true
+	const user = false
+  // const { user } = useSelector((state) => state.user.currentUser)
+
+  const dispatch = useDispatch()
+	let navigate = useNavigate()
+
 	return (
 		<Routes>
 			<Route
