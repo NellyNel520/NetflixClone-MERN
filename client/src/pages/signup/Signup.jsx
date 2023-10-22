@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './signup.scss'
 import { Link } from 'react-router-dom'
-import { registerUser } from '../../redux/apiCalls'
+import { registerUser } from '../../authContext/apiCalls'
 
 const Signup = () => {
 	const [email, setEmail] = useState('') 

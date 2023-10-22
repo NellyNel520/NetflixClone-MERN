@@ -1,6 +1,6 @@
 import Axios from 'axios'
 
-export const BASE_URL = 'http://localhost:3001/api' 
+const BASE_URL = 'http://localhost:3001/api' 
 
 const user = JSON.parse(localStorage.getItem('persist:root'))?.user
 const currentUser = user && JSON.parse(user).currentUser

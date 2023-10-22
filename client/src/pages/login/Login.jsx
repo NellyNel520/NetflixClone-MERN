@@ -1,8 +1,23 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './login.scss'
 import { Link } from 'react-router-dom'
 
+import { useNavigate } from 'react-router-dom'
+
+
+
 const Login = () => {
+
+	let navigate = useNavigate()
+	const [email, setEmail] = useState('')
+	const [password, setPassword] = useState('')
+
+
+	// const handleLogin = (e) => {
+	// 	e.preventDefault()
+	// 	login(dispatch, { email, password })
+	// 	navigate('/')
+	// }
 	return (
 		<div className="login">
 			<div className="top">
@@ -22,10 +37,11 @@ const Login = () => {
 						className="input"
 						type="email"
 						placeholder="Email or phone number"
+						onChange={(e) => setEmail(e.target.value)}
 					/>
-					<input className="input" type="password" placeholder="Password" />
+					<input className="input" type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
 
-					<button className="loginButton">Sign In</button>
+					<button className="loginButton" >Sign In</button>
 
 					<div className="save">
 						<div>
