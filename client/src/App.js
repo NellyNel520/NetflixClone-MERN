@@ -4,12 +4,14 @@ import Watch from './pages/watch/Watch'
 import Signup from './pages/signup/Signup'
 import Login from './pages/login/Login'
 import { Routes, Route, Navigate } from 'react-router-dom'
-
 import { useNavigate } from 'react-router-dom'
+import { useContext } from "react";
+import { AuthContext } from "./authContext/AuthContext";
+
 
 function App() {
-	const user = false
- 
+	// const user = false
+	const { user } = useContext(AuthContext);
 
 
 	let navigate = useNavigate()
