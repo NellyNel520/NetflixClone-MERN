@@ -6,7 +6,7 @@ import {
 	updateUserSuccess,
 	updateUserFailure,
 } from './userRedux'
-import {publicRequest, userRequest} from '../../requestMethods'
+import {publicRequest, userRequest} from './requestMethods'
 
 
 export const login = async (dispatch, user) => {

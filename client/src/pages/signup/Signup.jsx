@@ -1,13 +1,14 @@
-import React, { useState } from 'react'
-import { useRef } from 'react'
+import React, { useState, useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 import './signup.scss'
 import { Link } from 'react-router-dom'
+import { registerUser } from '../../redux/apiCalls'
 
 const Signup = () => {
 	const [email, setEmail] = useState('') 
 	const [password, setPassword] = useState('')
 	const [username, setUsername] = useState('')
-	// let navigate = useNavigate()
+	let navigate = useNavigate()
 
 	const emailRef = useRef()
 	const passwordRef = useRef()
@@ -17,8 +18,20 @@ const Signup = () => {
 		setEmail(emailRef.current.value)
 	}
 
-	const handleFinish = () => {
+	const handleFinish = async (e) => {
+		e.preventDefault();
+		setUsername(usernameRef.current.value);
 		setPassword(passwordRef.current.value)
+		try {
+			await registerUser({
+				username: username,
+				email: email,
+				password: password
+			})
+			navigate('/login')
+		} catch (err) {
+
+		}
 	}
 
 	return (
@@ -51,6 +64,7 @@ const Signup = () => {
 					</div>
 				) : (
 					<form className="input">
+					<input type="username" placeholder="username" ref={usernameRef} />
 						<input type="password" placeholder="Password" ref={passwordRef} />
 						<button className="signupButton" onClick={handleFinish}>
 							Start
