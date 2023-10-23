@@ -13,12 +13,13 @@ const ListItem = ({ index, movie, genres }) => {
 	const genreIds = movie.genre_ids
 	// console.log(item.genre_ids)
 	// console.log(genreIds)
+	console.log(movie)
 	const trailer =
 		'https://imdb-video.media-imdb.com/vi1054721049/1434659607842-pgv4ql-1677995691769.mp4?Expires=1697688111&Signature=oG8RbPKp9U63onyZBYu2PlxiRIZkqJ2KzoK3c4FlPEl3P2uUAEN7qLdJmjTdZNRc1bewM-a0aZ865BitQc4sdPrDw1mBJeOMJpvVXU0qcwAdFDcPBefEypGFz83LHKUJv52mXnlZsKG3HyXAwy93mu1Qs4EcgZuSj3Qx-4Ifp2QuLxDkDLtUK371V4b0GiCqk87dm9hgb93oojTrFZwXwvETJLDidEZo-MIdah0bBDg6O~wWXPInLYlir4UgOGts890s6Q6RwKQIA-Z0pjOl5sdN5lYmLpyhC3SqxdfmsAieC1KkBznZIb7GTijycIOmJUlWmPCQ8iAqIh9PEeLM7Q__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA'
 
 	const BASE_URL = 'https://image.tmdb.org/t/p/original'
 
-	// const genre = item.genre_ids && genres(item.genre_ids) ? item.genre_ids.map(s => `<span>${s.name}</span>`) : ""
+
 	useEffect(() => {
 	const getGenreTitle = () => {
 		try {
@@ -35,6 +36,9 @@ const ListItem = ({ index, movie, genres }) => {
 	}
 	getGenreTitle()
 	}, [])
+
+	const releaseDate = new Date(movie.release_date)
+	const releaseYear = releaseDate.getFullYear()
 
 	return (
 		<div
@@ -63,7 +67,7 @@ const ListItem = ({ index, movie, genres }) => {
 						<div className="itemInfoTop">
 							<span>1 hour 51 mins</span>
 							<span className="limit">+18</span>
-							<span>2008</span>
+							<span>{releaseYear}</span>
 						</div>
 
 						<div className="desc">
