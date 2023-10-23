@@ -28,10 +28,16 @@ const Featured = ({type}) => {
         </div>
       )}
 
-      <img src="https://assets-prd.ignimgs.com/2021/05/25/f9-blogroll-1621977019242.jpg" alt="movie imgge"/>
+      <img
+      //  src="https://assets-prd.ignimgs.com/2021/05/25/f9-blogroll-1621977019242.jpg" 
+      src="https://vidasalseracom.files.wordpress.com/2021/08/vivo-2-vidasalsera.jpg?w=1200"
+      alt="movie imgge"/>
 
      <div className='info'>
-      <img src="https://www.universalpictures.com.au/tl_files/content/movies/fast9/title.png" alt="movie logo"/>
+      <img 
+      // src="https://www.universalpictures.com.au/tl_files/content/movies/fast9/title.png" 
+      src="https://www.themoviedb.org/t/p/original/AsoF5slprur9YMifq9vUci0xnSg.png"
+      alt="movie logo"/>
       <span className='desc'>
       Vin Diesel's Dom Toretto is leading a quiet life off the grid with Letty and his son, little Brian, but they know that danger always lurks just over their peaceful horizon. This time, that threat will force Dom to confront the sins of his past if he's going to save those he loves most.
       </span>
