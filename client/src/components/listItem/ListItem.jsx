@@ -67,10 +67,6 @@ const ListItem = ({ index, movie, genres }) => {
 						</div>
 
 						<div className="desc">
-							{/* A process server and his marijuana dealer wind up on the run from
-							hitmen and a corrupt police officer after he witnesses his
-							dealer's boss murder a competitor while... */}
-							{/* {movie.overview} */}
 							{movie.overview.length > 150 ?
 							`${movie.overview.substring(0, 150)}...` : movie.overview
 							}
