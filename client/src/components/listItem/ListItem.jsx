@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { userRequest } from '../../authContext/requestMethods'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 import './listItem.scss'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import AddIcon from '@mui/icons-material/Add'
@@ -10,14 +11,18 @@ import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined'
 const ListItem = ({ index, movie, genres }) => {
 	const [isHovered, setIsHovered] = useState(false)
 	const [genreNames, setGenreNames] = useState('')
+	const [runtime, setRuntime] = useState('')
+	const [releaseDates, setReleaseDates] = useState([])
 	const genreIds = movie.genre_ids
-	// console.log(item.genre_ids)
+	const BASE_URL = 'https://image.tmdb.org/t/p/original'
+	// console.log(movie)
 	// console.log(genreIds)
-	console.log(movie)
+	
 	const trailer =
 		'https://imdb-video.media-imdb.com/vi1054721049/1434659607842-pgv4ql-1677995691769.mp4?Expires=1697688111&Signature=oG8RbPKp9U63onyZBYu2PlxiRIZkqJ2KzoK3c4FlPEl3P2uUAEN7qLdJmjTdZNRc1bewM-a0aZ865BitQc4sdPrDw1mBJeOMJpvVXU0qcwAdFDcPBefEypGFz83LHKUJv52mXnlZsKG3HyXAwy93mu1Qs4EcgZuSj3Qx-4Ifp2QuLxDkDLtUK371V4b0GiCqk87dm9hgb93oojTrFZwXwvETJLDidEZo-MIdah0bBDg6O~wWXPInLYlir4UgOGts890s6Q6RwKQIA-Z0pjOl5sdN5lYmLpyhC3SqxdfmsAieC1KkBznZIb7GTijycIOmJUlWmPCQ8iAqIh9PEeLM7Q__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA'
 
-	const BASE_URL = 'https://image.tmdb.org/t/p/original'
+
+
 
 
 	useEffect(() => {
@@ -34,11 +39,43 @@ const ListItem = ({ index, movie, genres }) => {
 			console.log(err)
 		}
 	}
+
+	const getRunTime = () => {
+	
+		axios.get(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=1b3318f6cac22f830b1d690422391493&language=en-US&append_to_response=release_dates
+		`)
+		.then(response => {
+			// console.log(response.data.release_dates.results)
+			setRuntime(response.data.runtime)
+			setReleaseDates(response.data.release_dates.results)
+		})
+		.catch(error => {
+      console.log(error)
+    })
+}
+
+
+
 	getGenreTitle()
+	getRunTime()
+	
 	}, [])
 
 	const releaseDate = new Date(movie.release_date)
 	const releaseYear = releaseDate.getFullYear()
+	const hours = Math.floor(runtime /60)
+	const mins = runtime % 60
+
+	const UsRating = releaseDates.filter(function (item) {
+		return item.iso_3166_1 === 'US'
+	})
+	const rating = UsRating[0]?.release_dates[0]?.certification
+	// console.log(UsRating[0]?.release_dates[0]?.certification)
+	console.log(rating)
+
+
+
+
 
 	return (
 		<div
@@ -65,9 +102,11 @@ const ListItem = ({ index, movie, genres }) => {
 						</div>
 
 						<div className="itemInfoTop">
-							<span>1 hour 51 mins</span>
-							<span className="limit">+18</span>
-							<span>{releaseYear}</span>
+						{rating ? (<span className="limit">{rating}</span>) : null}
+							
+							<span>
+							{hours > 0 ? (`${hours}h`) : null} {mins}m</span>
+							<span className="limit">HD</span>
 						</div>
 
 						<div className="desc">
