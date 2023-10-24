@@ -48,9 +48,13 @@
       flex-direction: column;
       padding: 5px;
 
+      h3{
+        margin: 0;
+      }
+
         .icons{
           display: flex;
-           margin-bottom: 10px;
+           margin: 8px 0;
 
            .icon {
             border: 2px solid white;
@@ -63,7 +67,7 @@
         .itemInfoTop{
           display: flex;
           align-items: center;
-          margin-bottom: 10px;
+          margin: 5px 0 10px 0;
           font-size: 14px;
           font-weight: 600;
           color: gray;
@@ -71,7 +75,7 @@
           .limit {
             border: 1px solid gray;
             padding: 1px 3px;
-            margin: 0 10px;
+            margin: 0 5px;
           }
         }
 
@@ -81,8 +85,13 @@
         }
 
         .genre{
-          font-size: 14px;
+          font-size: 18px;
           color: lightgray;
+          
+          .test{
+            margin-right: 10px;
+            
+          }
       }
     }
   }
