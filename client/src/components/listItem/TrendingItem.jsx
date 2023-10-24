@@ -53,7 +53,7 @@ const TrendingItem = ({ index, movie, genres }) => {
 
 		getGenreTitle()
 		getRunTime()
-	}, [])
+	}, [movie, genres, genreIds])
 
   const releaseDate = new Date(movie.release_date)
 	const releaseYear = releaseDate.getFullYear()
@@ -70,7 +70,7 @@ const TrendingItem = ({ index, movie, genres }) => {
   return (
   	<div
 			className="trendingListItem"
-			style={{ left: isHovered && index * 230 - 50 + index * 2.5 }}
+			style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 		>

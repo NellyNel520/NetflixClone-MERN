@@ -5,6 +5,7 @@ import Navbar from '../../components/navbar/Navbar'
 import Featured from '../../components/featured/Featured'
 import List from '../../components/list/List'
 import TrendingMovieList from '../../components/list/TrendingMovieList'
+import TrendingShowList from '../../components/list/TrendingShowList'
 
  
 const Home = ({type}) => {
@@ -35,7 +36,7 @@ const Home = ({type}) => {
       <Navbar />
       <Featured type={type} />
       <TrendingMovieList genres={genres}/>
-      
+      <TrendingShowList />
 
       {genres ? genres.map((genre) => <List genre={genre} key={genre.id} genres={genres}/>) : (null)}
 

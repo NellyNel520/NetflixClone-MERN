@@ -1,7 +1,6 @@
  import React, { useEffect, useRef, useState } from 'react'
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
-import ListItem from '../listItem/ListItem'
 import TrendingItem from '../listItem/TrendingItem'
 import './trendingList.scss'
 import axios from 'axios'
@@ -45,7 +44,7 @@ const TrendingMovieList = ({genres}) => {
 
   return (
     <div className="trendingList">
-    <span className="listTitle">Trending Movies</span>
+    <span className="listTitle">Top 10 Movies</span>
     <div className="wrapper">
       <ArrowBackIosNewOutlinedIcon
         className="sliderArrow left"
