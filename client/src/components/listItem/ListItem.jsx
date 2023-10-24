@@ -95,7 +95,7 @@ const ListItem = ({ index, movie, genres }) => {
 						</div>
 
 						<div className="itemInfoTop">
-							{rating ? <span className="limit">{rating}</span> : null}
+							{rating ? <span className="limit">{rating}</span> : <span className='limit'>NR</span>}
 
 							<span>
 								{runtime > 60 ? `${hours}h ${mins}m` : `${runtime}m`} 

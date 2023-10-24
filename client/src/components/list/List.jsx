@@ -53,7 +53,7 @@ const List = ({ genre, genres }) => {
 					<ListItem index={2}/>
 					<ListItem index={3}/>
 					<ListItem index={4}/>
-					<ListItem index={5}/>
+					<ListItem index={5}/> 
 					<ListItem index={6}/>
 					<ListItem index={7}/>
 					<ListItem index={8}/> 
