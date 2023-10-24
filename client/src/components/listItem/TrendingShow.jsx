@@ -12,7 +12,7 @@ import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDown
 const TrendingShow = ({ index, show}) => {
   const [isHovered, setIsHovered] = useState(false)
 	const [genreNames, setGenreNames] = useState([])
-	const [runtime, setRuntime] = useState('')
+	const [showDetails, setShowDetails] = useState({})
 	const [releaseDates, setReleaseDates] = useState([])
 	const BASE_URL = 'https://image.tmdb.org/t/p/original'
 
@@ -27,8 +27,24 @@ const TrendingShow = ({ index, show}) => {
       axios.get(`	https://api.themoviedb.org/3/tv/${show.id}?api_key=1b3318f6cac22f830b1d690422391493&language=en-US&append_to_response=release_dates
       `)
       .then((response) => {
-        console.log(response.data.genres)
+        // console.log(response.data)
         setGenreNames(response.data.genres)
+        setShowDetails(response.data)
+        // setRuntime(response.data.runtime)
+        // setReleaseDates(response.data.release_dates.results)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }
+
+    const getContentRatings = () => {
+      axios.get(`https://api.themoviedb.org/3/tv/${show.id}/content_ratings?api_key=1b3318f6cac22f830b1d690422391493&language=en-US&append_to_response=release_dates
+      `)
+      .then((response) => {
+        // console.log(response.data.results)
+        setReleaseDates(response.data.results)
+       
         // setRuntime(response.data.runtime)
         // setReleaseDates(response.data.release_dates.results)
       })
@@ -38,11 +54,16 @@ const TrendingShow = ({ index, show}) => {
     }
 
     getSeriesDetails()
+    getContentRatings()
   }, [show])
 
   // const hours = Math.floor(show.episode_run_time[0] / 60)
 	// const mins = show.episode_run_time[0] % 60
-  const showGenres = show.genres
+  const UsRating = releaseDates.filter(function (item) {
+		return item.iso_3166_1 === 'US'
+	})
+	const rating = UsRating[0]?.rating
+  console.log(rating)
 
   return (
     <div
@@ -70,11 +91,11 @@ const TrendingShow = ({ index, show}) => {
 						</div>
 
 						<div className="itemInfoTop">
-							{/* {rating ? <span className="limit">{rating}</span> : <span className='limit'>NR</span>} ****extra call needed ****/}
+							{UsRating ? <span className="limit">{rating}</span> : <span className='limit'>NR</span>} 
 
 							<span>
               {/* if 1 season episodes.length and if more that 1 season seasons.length */}
-								{/* {show.episode_run_time[0] > 60 ? `${hours}h ${mins}m` : `${show.episode_run_time[0]}m`}  */}
+								{showDetails.number_of_seasons > 1 ? `${showDetails.number_of_seasons} Seasons` : `${showDetails.number_of_episodes} Episodes`} 
 							</span>
 							<span className="limit">HD</span>
 						</div>
