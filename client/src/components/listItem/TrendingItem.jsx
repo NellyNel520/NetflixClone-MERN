@@ -2,25 +2,22 @@ import React, { useState, useEffect } from 'react'
 import { userRequest } from '../../authContext/requestMethods'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import './listItem.scss'
+import './trendingItem.scss'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import AddIcon from '@mui/icons-material/Add'
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined'
 import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
- 
 
-const ListItem = ({ index, movie, genres }) => {
-	const [isHovered, setIsHovered] = useState(false)
+const TrendingItem = ({ index, movie, genres }) => {
+  const [isHovered, setIsHovered] = useState(false)
 	const [genreNames, setGenreNames] = useState([])
 	const [runtime, setRuntime] = useState('')
 	const [releaseDates, setReleaseDates] = useState([])
 	const genreIds = movie.genre_ids
 	const BASE_URL = 'https://image.tmdb.org/t/p/original'
-	// console.log(movie)
-	// console.log(genreIds)
 
-	const trailer =
+  const trailer =
 		'https://imdb-video.media-imdb.com/vi1054721049/1434659607842-pgv4ql-1677995691769.mp4?Expires=1697688111&Signature=oG8RbPKp9U63onyZBYu2PlxiRIZkqJ2KzoK3c4FlPEl3P2uUAEN7qLdJmjTdZNRc1bewM-a0aZ865BitQc4sdPrDw1mBJeOMJpvVXU0qcwAdFDcPBefEypGFz83LHKUJv52mXnlZsKG3HyXAwy93mu1Qs4EcgZuSj3Qx-4Ifp2QuLxDkDLtUK371V4b0GiCqk87dm9hgb93oojTrFZwXwvETJLDidEZo-MIdah0bBDg6O~wWXPInLYlir4UgOGts890s6Q6RwKQIA-Z0pjOl5sdN5lYmLpyhC3SqxdfmsAieC1KkBznZIb7GTijycIOmJUlWmPCQ8iAqIh9PEeLM7Q__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA'
 
 	useEffect(() => {
@@ -58,7 +55,7 @@ const ListItem = ({ index, movie, genres }) => {
 		getRunTime()
 	}, [])
 
-	const releaseDate = new Date(movie.release_date)
+  const releaseDate = new Date(movie.release_date)
 	const releaseYear = releaseDate.getFullYear()
 	const hours = Math.floor(runtime / 60)
 	const mins = runtime % 60
@@ -69,15 +66,16 @@ const ListItem = ({ index, movie, genres }) => {
 	const rating = UsRating[0]?.release_dates[0]?.certification
 	// console.log(rating)
 
-	return (
-		<div
-			className="listItem"
-			style={{ left: isHovered && index * 225 - 50 + index * 2.5 }}
+
+  return (
+  	<div
+			className="trendingListItem"
+			style={{ left: isHovered && index * 230 - 50 + index * 2.5 }}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 		>
 			<img
-				src={`${BASE_URL}/${movie.backdrop_path}`}
+				src={`${BASE_URL}/${movie.poster_path}`}
 				alt="movie cover"
 			/>
 			{isHovered && (
@@ -118,7 +116,7 @@ const ListItem = ({ index, movie, genres }) => {
 				</>
 			)}
 		</div>
-	)
+  )
 }
 
-export default ListItem
+export default TrendingItem

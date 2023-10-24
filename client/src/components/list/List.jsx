@@ -6,7 +6,7 @@ import './list.scss'
 import axios from 'axios'
 
 const List = ({ genre, genres }) => {
-	const [isMoved, setIsMoved] = useState(false)
+	const [isMoved, setIsMoved] = useState(false) 
 	const [slideNumber, setSliderNumber] = useState(0)
 	const [movies, setMovies] = useState([])
 	const listRef = useRef()
@@ -22,7 +22,7 @@ const List = ({ genre, genres }) => {
 			})
 			.catch((error) => {
 				console.log(error)
-			})
+			}) 
 	}, [genre])
 
 	const handleClick = (direction) => {

@@ -4,6 +4,7 @@ import './home.scss'
 import Navbar from '../../components/navbar/Navbar'
 import Featured from '../../components/featured/Featured'
 import List from '../../components/list/List'
+import TrendingMovieList from '../../components/list/TrendingMovieList'
 
  
 const Home = ({type}) => {
@@ -33,6 +34,8 @@ const Home = ({type}) => {
     <div className='home'>
       <Navbar />
       <Featured type={type} />
+      <TrendingMovieList genres={genres}/>
+      
 
       {genres ? genres.map((genre) => <List genre={genre} key={genre.id} genres={genres}/>) : (null)}
 
