@@ -7,7 +7,8 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow'
 import AddIcon from '@mui/icons-material/Add'
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined'
 import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined'
-import CircleIcon from '@mui/icons-material/Circle'
+import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined';
+
 
 const ListItem = ({ index, movie, genres }) => {
 	const [isHovered, setIsHovered] = useState(false)
@@ -89,7 +90,8 @@ const ListItem = ({ index, movie, genres }) => {
 							<PlayArrowIcon className="icon" />
 							<AddIcon className="icon" />
 							<ThumbUpAltOutlinedIcon className="icon" />
-							<ThumbDownAltOutlinedIcon className="icon" />
+							<KeyboardArrowDownOutlinedIcon className="infoIcon"/>
+							
 						</div>
 
 						<div className="itemInfoTop">
