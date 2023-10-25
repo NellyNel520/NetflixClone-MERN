@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import ArrowBackIosNewOutlinedIcon from '@mui/icons-material/ArrowBackIosNewOutlined'
 import ArrowForwardIosOutlinedIcon from '@mui/icons-material/ArrowForwardIosOutlined'
-import TrendingShow from '../listItem/TrendingShow'
+import TrendingShow from '../trendingItem/TrendingShow'
 import './trendingList.scss'
 import axios from 'axios'
 

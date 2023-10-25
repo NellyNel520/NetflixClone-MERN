@@ -4,8 +4,8 @@ import './home.scss'
 import Navbar from '../../components/navbar/Navbar'
 import Featured from '../../components/featured/Featured'
 import List from '../../components/list/List'
-import TrendingMovieList from '../../components/list/TrendingMovieList'
-import TrendingShowList from '../../components/list/TrendingShowList'
+import TrendingMovieList from '../../components/trendingList/TrendingMovieList'
+import TrendingShowList from '../../components/trendingList/TrendingShowList'
 
  
 const Home = ({type}) => {
@@ -26,7 +26,7 @@ const Home = ({type}) => {
     })
   }, [])
 
-
+console.log(genres.length)
 
  
 
@@ -36,9 +36,10 @@ const Home = ({type}) => {
       <Navbar />
       <Featured type={type} />
       <TrendingMovieList genres={genres}/>
-      <TrendingShowList />
 
-      {genres ? genres.map((genre) => <List genre={genre} key={genre.id} genres={genres}/>) : (null)}
+      {genres ? genres.slice(0, 3).map((genre) => <List genre={genre} key={genre.id} genres={genres}/>) : (null)}
+      <TrendingShowList />
+      {genres ? genres.slice(4, 10).map((genre) => <List genre={genre} key={genre.id} genres={genres}/>) : (null)}
 
       {/* <List />
       <List />

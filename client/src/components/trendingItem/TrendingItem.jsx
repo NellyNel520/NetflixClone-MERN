@@ -107,6 +107,7 @@ const TrendingItem = ({ index, movie, genres }) => {
 							}
 						</div> */}
 
+
 						<div className="genre">
 							{genreNames.slice(0, 4).map((name) => (
 								<span className="test">{name}</span>
