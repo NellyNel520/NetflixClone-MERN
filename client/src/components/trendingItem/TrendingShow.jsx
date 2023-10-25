@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { userRequest } from '../../authContext/requestMethods'
 import { Link } from 'react-router-dom'
+import movieTrailer from 'movie-trailer'
+import YouTube from 'react-youtube'
 import axios from 'axios'
 import './trendingItem.scss'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
@@ -14,6 +16,7 @@ const TrendingShow = ({ index, show}) => {
 	const [genreNames, setGenreNames] = useState([])
 	const [showDetails, setShowDetails] = useState({})
 	const [releaseDates, setReleaseDates] = useState([])
+	const [videoId, setVideoId] = useState('')
 	const BASE_URL = 'https://image.tmdb.org/t/p/original'
 
   const trailer =
@@ -53,8 +56,24 @@ const TrendingShow = ({ index, show}) => {
       })
     }
 
+		const getShowTrailer = async () => {
+			await movieTrailer(show.name, {
+				id: true,
+				multi: true,
+				videoType: 'tv'
+			})
+				.then(
+					(response) => 
+					// console.log(response, 'herrrreeeee')
+					setVideoId(response[3])
+				)
+				.catch((err) => console.log(err))
+		}
+
+
     getSeriesDetails()
     getContentRatings()
+		getShowTrailer()
   }, [show])
 
   // const hours = Math.floor(show.episode_run_time[0] / 60)
@@ -63,7 +82,7 @@ const TrendingShow = ({ index, show}) => {
 		return item.iso_3166_1 === 'US'
 	})
 	const rating = UsRating[0]?.rating
-  console.log(rating)
+  // console.log(rating)
 
   return (
     <div
@@ -87,12 +106,20 @@ const TrendingShow = ({ index, show}) => {
 		
 			{isHovered && (
 				<> 
-				<img
+				{/* <img
 						className="hoverImage"
 						src={`${BASE_URL}/${show.backdrop_path}`}
 						alt="movie cover" 
+					/> */}
+						<YouTube
+						videoId={videoId}
+						opts={{
+							height: '200px',
+							width: '400px',
+							playerVars: { autoplay: 1, mute: 1 },
+						}}
 					/>
-					<video src={trailer} autoPlay={true} loop />
+					{/* <video src={trailer} autoPlay={true} loop /> */}
 					{/* <iframe className="video" src="https://www.youtube.com/embed/BOe8L69JpVI?autoplay=1&mute=1" title="movie title" frameborder="0" ></iframe> */}
 					<div className="itemInfo">
 						<p>{show.name}</p>
