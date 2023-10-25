@@ -12,7 +12,7 @@ const Home = ({type}) => {
   const [genres, setGenres] = useState([]);
 
 
- 
+  
   
 
   useEffect(() => {

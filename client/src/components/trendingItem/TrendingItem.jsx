@@ -126,8 +126,8 @@ const TrendingItem = ({ index, movie, genres }) => {
 					<YouTube
 						videoId={videoId2}
 						opts={{
-							height: '180px',
-							width: '100%',
+							height: '200px',
+							width: '400px',
 							playerVars: { autoplay: 1, mute: 1 },
 						}}
 					/>

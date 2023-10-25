@@ -72,7 +72,7 @@ const ListItem = ({ index, movie, genres }) => {
 		<div
 			className="listItem"
 			style={{ left: isHovered && index * 338 - 50 + index * 2.5 }}
-			onMouseEnter={() => setIsHovered(true)}
+			onMouseEnter={() => setIsHovered(true)} 
 			onMouseLeave={() => setIsHovered(false)}
 		>
 			<img src={`${BASE_URL}/${movie.backdrop_path}`} alt="movie cover" />

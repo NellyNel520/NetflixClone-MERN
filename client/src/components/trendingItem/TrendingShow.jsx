@@ -21,7 +21,7 @@ const TrendingShow = ({ index, show}) => {
 
 
   // const genreIds = show.genre_ids
-
+ 
   useEffect(() => {
     const getSeriesDetails = () => {
       axios.get(`	https://api.themoviedb.org/3/tv/${show.id}?api_key=1b3318f6cac22f830b1d690422391493&language=en-US&append_to_response=release_dates
@@ -90,7 +90,7 @@ const TrendingShow = ({ index, show}) => {
 				<img
 						className="hoverImage"
 						src={`${BASE_URL}/${show.backdrop_path}`}
-						alt="movie cover"
+						alt="movie cover" 
 					/>
 					<video src={trailer} autoPlay={true} loop />
 					{/* <iframe className="video" src="https://www.youtube.com/embed/BOe8L69JpVI?autoplay=1&mute=1" title="movie title" frameborder="0" ></iframe> */}
