@@ -13,7 +13,7 @@ const TrendingShowList = () => {
 	const [shows, setShows] = useState([])
 	const listRef = useRef()
 
-
+ 
   useEffect(() => {
 		axios
 			.get(

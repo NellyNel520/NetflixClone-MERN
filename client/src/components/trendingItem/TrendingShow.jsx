@@ -72,12 +72,26 @@ const TrendingShow = ({ index, show}) => {
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 		>
-			<img
-				src={`${BASE_URL}/${show.poster_path}`}
-				alt="movie cover"
-			/>
+			{!isHovered ? (
+				
+				<div className='list-position'>
+					<div className='orderNumber'>{index + 1}</div>
+					<img
+						className="poster"
+						src={`${BASE_URL}/${show.poster_path}`}
+						alt="movie cover"
+					/>
+				</div>
+				
+			) : (null)}
+		
 			{isHovered && (
 				<>
+				<img
+						className="hoverImage"
+						src={`${BASE_URL}/${show.backdrop_path}`}
+						alt="movie cover"
+					/>
 					<video src={trailer} autoPlay={true} loop />
 					{/* <iframe className="video" src="https://www.youtube.com/embed/BOe8L69JpVI?autoplay=1&mute=1" title="movie title" frameborder="0" ></iframe> */}
 					<div className="itemInfo">

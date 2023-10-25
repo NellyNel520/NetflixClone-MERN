@@ -89,7 +89,7 @@ const TrendingItem = ({ index, movie, genres }) => {
 				<>
 					<img
 						className="hoverImage"
-						src={`${BASE_URL}/${movie.poster_path}`}
+						src={`${BASE_URL}/${movie.backdrop_path}`}
 						alt="movie cover"
 					/>
 					<video src={trailer} autoPlay={true} loop />
