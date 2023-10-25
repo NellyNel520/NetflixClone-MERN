@@ -39,7 +39,7 @@ console.log(genres.length)
 
       {genres ? genres.slice(0, 3).map((genre) => <List genre={genre} key={genre.id} genres={genres}/>) : (null)}
       <TrendingShowList />
-      {genres ? genres.slice(4, 10).map((genre) => <List genre={genre} key={genre.id} genres={genres}/>) : (null)}
+      {genres ? genres.slice(4, 19).map((genre) => <List genre={genre} key={genre.id} genres={genres}/>) : (null)}
 
       {/* <List />
       <List />

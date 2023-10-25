@@ -81,7 +81,7 @@ const TrendingItem = ({ index, movie, genres }) => {
 						className="poster"
 						src={`${BASE_URL}/${movie.poster_path}`}
 						alt="movie cover"
-					/>
+					/> 
 				</div>
 				
 			) : (null)}
@@ -95,11 +95,13 @@ const TrendingItem = ({ index, movie, genres }) => {
 					<video src={trailer} autoPlay={true} loop />
 					{/* <iframe className="video" src="https://www.youtube.com/embed/BOe8L69JpVI?autoplay=1&mute=1" title="movie title" frameborder="0" ></iframe> */}
 					<div className="itemInfo">
-						<h3>{movie.title}</h3>
+						<p>{movie.title}</p>
 						<div className="icons">
-							<PlayArrowIcon className="icon" />
-							<AddIcon className="icon" />
-							<ThumbUpAltOutlinedIcon className="icon" />
+						<div>
+								<PlayArrowIcon className="icon" />
+								<AddIcon className="icon" />
+								<ThumbUpAltOutlinedIcon className="icon" />
+							</div>
 							<KeyboardArrowDownOutlinedIcon className="infoIcon" />
 						</div>
 
@@ -110,7 +112,7 @@ const TrendingItem = ({ index, movie, genres }) => {
 								<span className="limit">NR</span>
 							)}
 
-							<span>{runtime > 60 ? `${hours}h ${mins}m` : `${runtime}m`}</span>
+							<span className='time'>{runtime > 60 ? `${hours}h ${mins}m` : `${runtime}m`}</span>
 							<span className="limit">HD</span>
 						</div>
 

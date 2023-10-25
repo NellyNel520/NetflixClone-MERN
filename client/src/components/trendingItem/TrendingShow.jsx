@@ -86,7 +86,7 @@ const TrendingShow = ({ index, show}) => {
 			) : (null)}
 		
 			{isHovered && (
-				<>
+				<> 
 				<img
 						className="hoverImage"
 						src={`${BASE_URL}/${show.backdrop_path}`}
@@ -95,11 +95,13 @@ const TrendingShow = ({ index, show}) => {
 					<video src={trailer} autoPlay={true} loop />
 					{/* <iframe className="video" src="https://www.youtube.com/embed/BOe8L69JpVI?autoplay=1&mute=1" title="movie title" frameborder="0" ></iframe> */}
 					<div className="itemInfo">
-						<h3>{show.name}</h3>
+						<p>{show.name}</p>
 						<div className="icons">
-							<PlayArrowIcon className="icon" />
-							<AddIcon className="icon" />
-							<ThumbUpAltOutlinedIcon className="icon" />
+						<div>
+								<PlayArrowIcon className="icon" />
+								<AddIcon className="icon" />
+								<ThumbUpAltOutlinedIcon className="icon" />
+							</div>
 							<KeyboardArrowDownOutlinedIcon className="infoIcon"/>
 							
 						</div>
