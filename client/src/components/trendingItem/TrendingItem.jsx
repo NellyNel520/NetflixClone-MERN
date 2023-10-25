@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { userRequest } from '../../authContext/requestMethods'
 import { Link } from 'react-router-dom'
+import movieTrailer from 'movie-trailer'
 import axios from 'axios'
 import './trendingItem.scss'
 import PlayArrowIcon from '@mui/icons-material/PlayArrow'
@@ -8,11 +9,14 @@ import AddIcon from '@mui/icons-material/Add'
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined'
 import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
+import YouTube from 'react-youtube'
 
 const TrendingItem = ({ index, movie, genres }) => {
 	const [isHovered, setIsHovered] = useState(false)
 	const [genreNames, setGenreNames] = useState([])
 	const [runtime, setRuntime] = useState('')
+	const [videoId, setVideoId] = useState('')
+	const [videoId2, setVideoId2] = useState('')
 	const [releaseDates, setReleaseDates] = useState([])
 	const genreIds = movie.genre_ids
 	const BASE_URL = 'https://image.tmdb.org/t/p/original'
@@ -50,9 +54,38 @@ const TrendingItem = ({ index, movie, genres }) => {
 					console.log(error)
 				})
 		}
+// longer videos 8 min long 
+
+		// const getMovieTrailer = async () => {
+		// 	await movieTrailer(null, {
+		// 		id: true,
+		// 		apiKey: '1b3318f6cac22f830b1d690422391493',
+		// 		tmdbId: movie.id,
+		// 	})
+		// 		.then((response) =>
+		// 			// console.log(response, 'herrrreeeee')
+		// 			setVideoId(response)
+		// 		)
+		// 		.catch((err) => console.log(err))
+		// }
+
+		const getMovieTrailer2 = async () => {
+			await movieTrailer(movie.title, {
+				id: true,
+				multi: true,
+			})
+				.then(
+					(response) => 
+					// console.log(response, 'herrrreeeee')
+					setVideoId2(response[3])
+				)
+				.catch((err) => console.log(err))
+		}
 
 		getGenreTitle()
 		getRunTime()
+		// getMovieTrailer()
+		getMovieTrailer2()
 	}, [movie, genres, genreIds])
 
 	const releaseDate = new Date(movie.release_date)
@@ -74,30 +107,36 @@ const TrendingItem = ({ index, movie, genres }) => {
 			onMouseLeave={() => setIsHovered(false)}
 		>
 			{!isHovered ? (
-				
-				<div className='list-position'>
-					<div className='orderNumber'>{index + 1}</div>
+				<div className="list-position">
+					<div className="orderNumber">{index + 1}</div>
 					<img
 						className="poster"
 						src={`${BASE_URL}/${movie.poster_path}`}
 						alt="movie cover"
-					/> 
+					/>
 				</div>
-				
-			) : (null)}
+			) : null}
 			{isHovered && (
 				<>
-					<img
+					{/* <img
 						className="hoverImage"
 						src={`${BASE_URL}/${movie.backdrop_path}`}
 						alt="movie cover"
+					/> */}
+					<YouTube
+						videoId={videoId2}
+						opts={{
+							height: '180px',
+							width: '100%',
+							playerVars: { autoplay: 1, mute: 1 },
+						}}
 					/>
-					<video src={trailer} autoPlay={true} loop />
+					{/* <video src={trailer} autoPlay={true} loop /> */}
 					{/* <iframe className="video" src="https://www.youtube.com/embed/BOe8L69JpVI?autoplay=1&mute=1" title="movie title" frameborder="0" ></iframe> */}
 					<div className="itemInfo">
 						<p>{movie.title}</p>
 						<div className="icons">
-						<div>
+							<div>
 								<PlayArrowIcon className="icon" />
 								<AddIcon className="icon" />
 								<ThumbUpAltOutlinedIcon className="icon" />
@@ -112,11 +151,13 @@ const TrendingItem = ({ index, movie, genres }) => {
 								<span className="limit">NR</span>
 							)}
 
-							<span className='time'>{runtime > 60 ? `${hours}h ${mins}m` : `${runtime}m`}</span>
+							<span className="time">
+								{runtime > 60 ? `${hours}h ${mins}m` : `${runtime}m`}
+							</span>
 							<span className="limit">HD</span>
 						</div>
 
-						{/* <div className="desc">
+						{/* <div className="desc"> 
 							{movie.overview.length > 150 ?
 							`${movie.overview.substring(0, 150)}...` : movie.overview
 							}
