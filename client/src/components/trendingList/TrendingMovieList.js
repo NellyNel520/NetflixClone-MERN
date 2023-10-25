@@ -41,7 +41,7 @@ const TrendingMovieList = ({genres}) => {
 		}
 	}
 
-
+ 
   return (
     <div className="trendingList">
     <span className="listTitle">Top 10 Movies</span>

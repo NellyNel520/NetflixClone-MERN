@@ -1,17 +1,51 @@
 .trendingListItem {
-  width: 220px;
+  width: 240px;
   height: 290px;
   background-color: var(--main-color);
   margin-right: 5px;
   overflow: hidden;
   cursor: pointer;
   color: white;
+  align-items: center;
+  
 
+.list-position {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  // transition: none;
+  // transform-style: preserve-3d;
+  // transform: rotateY(-0.01deg);
+}
 // here
-  img {
+.orderNumber {
+  font-weight: bold;
+  font-size: 220px;
+  line-height: 1;
+  margin-bottom: -14px;
+  color: black;
+  -webkit-text-stroke: 6px gray;
+  // text-stroke: 6px white;
+  text-shadow: 0 0 30px black;
+  position: absolute;
+  left: -12px;
+}
+  .poster {
+    width: 75%;
+    height: 100%;
+    object-fit:cover;
+    margin: 0px 0 0px 60px;
+    border-radius: 4px;
+    box-shadow: 0px 0px 32px black;
+  }
+
+
+  .hoverImage {
     width: 100%;
     height: 100%;
     object-fit:cover;
+    
+    
   }
 
   video {
@@ -32,13 +66,14 @@
   }
 
   &:hover {
-    width: 320px;
+    width: 380px;
     height: 330px;
-    position: absolute;
+    position: re;
     top: -40px;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.07);
     box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.07);
     border-radius: 5px;
+    
 
     img{
       height: 170px;
