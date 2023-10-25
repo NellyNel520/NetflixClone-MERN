@@ -65,7 +65,7 @@ const ListItem = ({ index, movie, genres }) => {
 				.then(
 					(response) => 
 					// console.log(response, 'herrrreeeee')
-					setVideoId(response[3])
+					setVideoId(response[0])
 				)
 				.catch((err) => console.log(err))
 		}

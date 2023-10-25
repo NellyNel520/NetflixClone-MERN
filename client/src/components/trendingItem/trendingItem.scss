@@ -27,16 +27,17 @@
   -webkit-text-stroke: 6px gray;
   // text-stroke: 6px white;
   text-shadow: 0 0 30px black;
-  position: absolute;
+  // position: absolute;
   left: -12px;
 }
   .poster {
-    width: 75%;
+    width: 60%;
     height: 100%;
     object-fit:cover;
     margin: 0px 0 0px 60px;
     border-radius: 4px;
     box-shadow: 0px 0px 32px black;
+    position: absolute;
   }
 
 
@@ -67,8 +68,8 @@
 
   &:hover {
     width: 430px;
-    height: 360px;
-    position: re;
+    height: 330px;
+    // position: relative;
     top: -40px;
     -webkit-box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.07);
     box-shadow: 0px 0px 15px 0px rgba(255, 255, 255, 0.07);

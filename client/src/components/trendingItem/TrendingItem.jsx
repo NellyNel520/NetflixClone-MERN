@@ -10,19 +10,22 @@ import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined'
 import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
 import YouTube from 'react-youtube'
+import Modal from 'react-modal';
+
 
 const TrendingItem = ({ index, movie, genres }) => {
 	const [isHovered, setIsHovered] = useState(false)
 	const [genreNames, setGenreNames] = useState([])
 	const [runtime, setRuntime] = useState('')
-	const [videoId, setVideoId] = useState('')
+	const [modalVisible, setModalVisible] = useState(false)
 	const [videoId2, setVideoId2] = useState('')
 	const [releaseDates, setReleaseDates] = useState([])
 	const genreIds = movie.genre_ids
 	const BASE_URL = 'https://image.tmdb.org/t/p/original'
 
-	const trailer =
-		'https://imdb-video.media-imdb.com/vi1054721049/1434659607842-pgv4ql-1677995691769.mp4?Expires=1697688111&Signature=oG8RbPKp9U63onyZBYu2PlxiRIZkqJ2KzoK3c4FlPEl3P2uUAEN7qLdJmjTdZNRc1bewM-a0aZ865BitQc4sdPrDw1mBJeOMJpvVXU0qcwAdFDcPBefEypGFz83LHKUJv52mXnlZsKG3HyXAwy93mu1Qs4EcgZuSj3Qx-4Ifp2QuLxDkDLtUK371V4b0GiCqk87dm9hgb93oojTrFZwXwvETJLDidEZo-MIdah0bBDg6O~wWXPInLYlir4UgOGts890s6Q6RwKQIA-Z0pjOl5sdN5lYmLpyhC3SqxdfmsAieC1KkBznZIb7GTijycIOmJUlWmPCQ8iAqIh9PEeLM7Q__&Key-Pair-Id=APKAIFLZBVQZ24NQH3KA'
+	
+
+
 
 	useEffect(() => {
 		const getGenreTitle = () => {
@@ -102,7 +105,7 @@ const TrendingItem = ({ index, movie, genres }) => {
 	return (
 		<div
 			className="trendingListItem"
-			style={{ left: isHovered && index * 365 - 50 + index * 2.5 }}
+			style={{ left: isHovered && index * 385 - 50 + index * 2.5 }}
 			onMouseEnter={() => setIsHovered(true)}
 			onMouseLeave={() => setIsHovered(false)}
 		>
@@ -117,16 +120,14 @@ const TrendingItem = ({ index, movie, genres }) => {
 				</div>
 			) : null}
 			{isHovered && (
-				<>
-					{/* <img
-						className="hoverImage"
-						src={`${BASE_URL}/${movie.backdrop_path}`}
-						alt="movie cover"
-					/> */}
+				<> 
+				<Modal></Modal>
+
+			
 					<YouTube
 						videoId={videoId2}
 						opts={{
-							height: '200px',
+							height: '180px',
 							width: '430px',
 							playerVars: { autoplay: 1, mute: 1 },
 						}}
@@ -136,7 +137,7 @@ const TrendingItem = ({ index, movie, genres }) => {
 					<div className="itemInfo">
 						<p>{movie.title}</p>
 						<div className="icons">
-							<div>
+							<div> 
 								<PlayArrowIcon className="icon" />
 								<AddIcon className="icon" />
 								<ThumbUpAltOutlinedIcon className="icon" />
