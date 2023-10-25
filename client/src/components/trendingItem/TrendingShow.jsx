@@ -65,7 +65,7 @@ const TrendingShow = ({ index, show}) => {
 				.then(
 					(response) => 
 					// console.log(response, 'herrrreeeee')
-					setVideoId(response[3])
+					setVideoId(response[2])
 				)
 				.catch((err) => console.log(err))
 		}
@@ -115,7 +115,7 @@ const TrendingShow = ({ index, show}) => {
 						videoId={videoId}
 						opts={{
 							height: '200px',
-							width: '400px',
+							width: '430px',
 							playerVars: { autoplay: 1, mute: 1 },
 						}}
 					/>

@@ -127,7 +127,7 @@ const TrendingItem = ({ index, movie, genres }) => {
 						videoId={videoId2}
 						opts={{
 							height: '200px',
-							width: '400px',
+							width: '430px',
 							playerVars: { autoplay: 1, mute: 1 },
 						}}
 					/>

@@ -8,12 +8,16 @@ import AddIcon from '@mui/icons-material/Add'
 import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined'
 import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
+import movieTrailer from 'movie-trailer'
+import YouTube from 'react-youtube'
+
 
 const ListItem = ({ index, movie, genres }) => {
 	const [isHovered, setIsHovered] = useState(false)
 	const [genreNames, setGenreNames] = useState([])
 	const [runtime, setRuntime] = useState('')
 	const [releaseDates, setReleaseDates] = useState([])
+	const [videoId, setVideoId] = useState('')
 	const genreIds = movie.genre_ids
 	const BASE_URL = 'https://image.tmdb.org/t/p/original'
 	// console.log(movie)
@@ -53,9 +57,23 @@ const ListItem = ({ index, movie, genres }) => {
 				})
 		}
 
+		const getMovieTrailer = async () => {
+			await movieTrailer(movie.title, {
+				id: true,
+				multi: true,
+			})
+				.then(
+					(response) => 
+					// console.log(response, 'herrrreeeee')
+					setVideoId(response[3])
+				)
+				.catch((err) => console.log(err))
+		}
+
 		getGenreTitle()
 		getRunTime()
-	}, [])
+		getMovieTrailer()
+	}, [movie, genres, genreIds])
 
 	const releaseDate = new Date(movie.release_date)
 	const releaseYear = releaseDate.getFullYear()
@@ -75,10 +93,25 @@ const ListItem = ({ index, movie, genres }) => {
 			onMouseEnter={() => setIsHovered(true)} 
 			onMouseLeave={() => setIsHovered(false)}
 		>
+
+		{!isHovered ? (
+
 			<img src={`${BASE_URL}/${movie.backdrop_path}`} alt="movie cover" />
+		) : (null)}
+
+
 			{isHovered && (
 				<>
-					<video src={trailer} autoPlay={true} loop />
+
+				<YouTube
+						videoId={videoId}
+						opts={{
+							height: '200px',
+							width: '438px',
+							playerVars: { autoplay: 1, mute: 1 },
+						}}
+					/>
+					{/* <video src={trailer} autoPlay={true} loop /> */}
 					{/* <iframe className="video" src="https://www.youtube.com/embed/BOe8L69JpVI?autoplay=1&mute=1" title="movie title" frameborder="0" ></iframe> */}
 					<div className="itemInfo">
 						<p>{movie.title}</p>
@@ -88,7 +121,7 @@ const ListItem = ({ index, movie, genres }) => {
 								<AddIcon className="icon" />
 								<ThumbUpAltOutlinedIcon className="icon" />
 							</div>
-							<KeyboardArrowDownOutlinedIcon className="infoIcon" />
+							<KeyboardArrowDownOutlinedIcon className="infoIcon" /> 
 						</div>
 
 						<div className="itemInfoTop">
