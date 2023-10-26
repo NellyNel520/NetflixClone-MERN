@@ -58,6 +58,11 @@ const ListItem = ({ index, movie, genres }) => {
 		}
 
 		const getMovieTrailer = async () => {
+			// await movieTrailer(null, {
+			// 	id: true,
+			// 	apiKey: '1b3318f6cac22f830b1d690422391493',
+			// 	tmdbId: movie.id,
+			// })
 			await movieTrailer(movie.title, {
 				id: true,
 				multi: true,
@@ -65,7 +70,7 @@ const ListItem = ({ index, movie, genres }) => {
 				.then(
 					(response) => 
 					// console.log(response, 'herrrreeeee')
-					setVideoId(response[0])
+					setVideoId(response)
 				)
 				.catch((err) => console.log(err))
 		}

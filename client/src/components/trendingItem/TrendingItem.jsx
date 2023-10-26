@@ -10,7 +10,6 @@ import ThumbUpAltOutlinedIcon from '@mui/icons-material/ThumbUpAltOutlined'
 import ThumbDownAltOutlinedIcon from '@mui/icons-material/ThumbDownAltOutlined'
 import KeyboardArrowDownOutlinedIcon from '@mui/icons-material/KeyboardArrowDownOutlined'
 import YouTube from 'react-youtube'
-import Modal from 'react-modal';
 
 
 const TrendingItem = ({ index, movie, genres }) => {
@@ -22,10 +21,6 @@ const TrendingItem = ({ index, movie, genres }) => {
 	const [releaseDates, setReleaseDates] = useState([])
 	const genreIds = movie.genre_ids
 	const BASE_URL = 'https://image.tmdb.org/t/p/original'
-
-	
-
-
 
 	useEffect(() => {
 		const getGenreTitle = () => {
@@ -57,7 +52,7 @@ const TrendingItem = ({ index, movie, genres }) => {
 					console.log(error)
 				})
 		}
-// longer videos 8 min long 
+		// longer videos 8 min long
 
 		// const getMovieTrailer = async () => {
 		// 	await movieTrailer(null, {
@@ -77,8 +72,7 @@ const TrendingItem = ({ index, movie, genres }) => {
 				id: true,
 				multi: true,
 			})
-				.then(
-					(response) => 
+				.then((response) =>
 					// console.log(response, 'herrrreeeee')
 					setVideoId2(response[3])
 				)
@@ -87,9 +81,15 @@ const TrendingItem = ({ index, movie, genres }) => {
 
 		getGenreTitle()
 		getRunTime()
-		// getMovieTrailer()
 		getMovieTrailer2()
 	}, [movie, genres, genreIds])
+
+	// const openModal = () => {
+	// 	setModalVisible(true)
+	// }
+	// const closeModal = () => {
+	// 	setModalVisible(false)
+	// }
 
 	const releaseDate = new Date(movie.release_date)
 	const releaseYear = releaseDate.getFullYear()
@@ -120,10 +120,16 @@ const TrendingItem = ({ index, movie, genres }) => {
 				</div>
 			) : null}
 			{isHovered && (
-				<> 
-				<Modal></Modal>
+				<>
+					{/* <Modal
+						isOpen={modalVisible}
+						onRequestClose={closeModal}
+						contentLabel="Movie Details Modal"
+					>
+						<div>hello</div>
+						<button onClick={closeModal()}>Close</button>
+					</Modal> */}
 
-			
 					<YouTube
 						videoId={videoId2}
 						opts={{
@@ -137,12 +143,14 @@ const TrendingItem = ({ index, movie, genres }) => {
 					<div className="itemInfo">
 						<p>{movie.title}</p>
 						<div className="icons">
-							<div> 
+							<div>
 								<PlayArrowIcon className="icon" />
 								<AddIcon className="icon" />
 								<ThumbUpAltOutlinedIcon className="icon" />
 							</div>
-							<KeyboardArrowDownOutlinedIcon className="infoIcon" />
+						
+								<KeyboardArrowDownOutlinedIcon className="infoIcon" />
+						
 						</div>
 
 						<div className="itemInfoTop">
